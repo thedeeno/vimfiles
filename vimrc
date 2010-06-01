@@ -141,7 +141,6 @@ autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
 
 "return a warning for "long lines" where "long" is either &textwidth or 80 (if
 "no &textwidth is set)
-"
 "return '' if no long lines
 "return '[#x,my,$z] if long lines are found, were x is the number of long
 "lines, y is the median length of the long lines and z is the length of the
@@ -223,6 +222,10 @@ set sidescroll=1
 
 "load pathogen managed plugins
 call pathogen#runtime_append_all_bundles()
+
+"explicitly turn off filetypes before turning them on 
+"to work around a bug in ubuntu
+filetype plugin off 
 
 "load ftplugins and indent files
 filetype plugin on
@@ -359,3 +362,9 @@ function! s:HighlightLongLines(width)
         echomsg "Usage: HighlightLongLines [natural number]"
     endif
 endfunction
+
+"misc remapping
+let mapleader=";"
+nnoremap S :
+
+colorscheme railscasts
