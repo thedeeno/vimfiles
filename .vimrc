@@ -372,6 +372,12 @@ endfunction
 
 "misc remapping
 let mapleader=";"
-nnoremap S :
+"nnoremap S :
+
+"align plugin mappings
+vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
+vmap <silent> <Leader>i| <ESC>:'<,'>Align |<CR>
+vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
+vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 
 colorscheme railscasts
