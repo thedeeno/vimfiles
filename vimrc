@@ -382,4 +382,7 @@ vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 "fuzzy finder mappings
 nnoremap <leader>b :FufBuffer<CR>
 
+"mru mappings
+nnoremap <leader>r :MRU<CR>
+
 colorscheme railscasts
