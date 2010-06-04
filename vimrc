@@ -20,6 +20,9 @@ set number      "add line numbers
 set showbreak=...
 set wrap linebreak nolist
 
+"set a custom leader
+let mapleader=";"
+
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
 vmap <D-j> gj
@@ -370,14 +373,13 @@ function! s:HighlightLongLines(width)
     endif
 endfunction
 
-"misc remapping
-let mapleader=";"
-"nnoremap S :
-
 "align plugin mappings
 vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
-vmap <silent> <Leader>i| <ESC>:'<,'>Align |<CR>
+vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
 vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
 vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
+
+"misc remapping
+"nnoremap S :
 
 colorscheme railscasts
