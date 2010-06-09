@@ -385,4 +385,14 @@ nnoremap <leader>b :FufBuffer<CR>
 "mru mappings
 nnoremap <leader>r :MRU<CR>
 
+"smart indent when entering insert mode with i on empty lines
+function! IndentWithI()
+    if len(getline('.')) == 0
+        return "\"_ddO"
+    else
+        return "i"
+    endif
+endfunction
+nnoremap <expr> i IndentWithI()
+
 colorscheme railscasts
