@@ -395,4 +395,4 @@ function! IndentWithI()
 endfunction
 nnoremap <expr> i IndentWithI()
 
-colorscheme railscasts
+colorscheme railscasts2
