@@ -288,9 +288,9 @@ endif
 
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
-"make <c-l> clear the highlight as well as redraw
-nnoremap <C-L> :nohls<CR><C-L>
-inoremap <C-L> <C-O>:nohls<CR>
+"make <leader>l clear the highlight as well as redraw
+noremap <leader>h :set hlsearch! hlsearch?<CR>
+inoremap <leader>h <C-O>:set hlsearch! hlsearch?<CR>
 
 "map to CommandT TextMate style finder
 nnoremap <leader>t :CommandT<CR>
