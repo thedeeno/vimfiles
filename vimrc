@@ -21,7 +21,7 @@ set showbreak=...
 set wrap linebreak nolist
 
 "set a custom leader
-let mapleader=";"
+"let mapleader=";" // was a poor choice is it's used to repeat motions
 
 "mapping for command key to map navigation thru display lines instead
 "of just numbered lines
