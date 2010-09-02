@@ -251,6 +251,7 @@ set ttymouse=xterm2
 set hidden
 
 "Command-T configuration
+noremap <leader>u :CommandTFlush<CR>
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
 
@@ -289,11 +290,11 @@ endif
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 "make <leader>l clear the highlight as well as redraw
-noremap <leader>h :set hlsearch! hlsearch?<CR>
-inoremap <leader>h <C-O>:set hlsearch! hlsearch?<CR>
+noremap <leader>l :set hlsearch! hlsearch?<CR>
+inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
 
 "map to CommandT TextMate style finder
-nnoremap <leader>t :CommandT<CR>
+nnoremap <leader>o :CommandT<CR>
 
 "map Q to something useful
 noremap Q gq
@@ -380,10 +381,10 @@ vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 "nnoremap S :
 
 "fuzzy finder mappings
-nnoremap <leader>b :FufBuffer<CR>
+nnoremap <C-b> :FufBuffer<CR>
 
 "mru mappings
-nnoremap <leader>r :MRU<CR>
+nnoremap <C-r> :MRU<CR>
 
 "smart indent when entering insert mode with i on empty lines
 function! IndentWithI()
@@ -396,3 +397,6 @@ endfunction
 nnoremap <expr> i IndentWithI()
 
 colorscheme railscasts2
+
+" add some rails helper mappings
+nmap ga :a<CR>
