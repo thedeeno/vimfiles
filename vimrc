@@ -425,3 +425,7 @@ let g:miniBufExplorerMoreThanOne = 1
 
 " create shortcut for deleting a window
 nmap gd <Plug>Kwbd
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
