@@ -294,7 +294,7 @@ noremap <leader>l :set hlsearch! hlsearch?<CR>
 inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
 
 "map to CommandT TextMate style finder
-nnoremap <leader>o :CommandT<CR>
+nnoremap go :CommandT<CR>
 
 "map Q to something useful
 noremap Q gq
@@ -380,8 +380,6 @@ vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 "misc remapping
 "nnoremap S :
 
-"fuzzy finder mappings
-nnoremap <C-b> :FufBuffer<CR>
 
 "mru mappings
 nnoremap <C-r> :MRU<CR>
@@ -398,5 +396,32 @@ nnoremap <expr> i IndentWithI()
 
 colorscheme railscasts2
 
-" add some rails helper mappings
+" remap ga to vim-rails alternate file command
 nmap ga :a<CR>
+
+" add some minibuffer options
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1 
+
+" add a minibuffer shortcut which is similar to vimperator
+nmap gt :MiniBufExplorer<CR>l<CR>
+nmap gT :MiniBufExplorer<CR>h<CR>
+
+" remap fuzzy finder buffer to something similar to the tab navigation
+nnoremap gu :FufBuffer<CR>
+
+" remap window navigation
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>n
+
+" create shortcut for cycling buffers with minibuf explorer
+nmap gt :MBEbn<CR>
+nmap gT :MBEbp<CR>
+let g:miniBufExplorerMoreThanOne = 1
+
+" create shortcut for deleting a window
+nmap gd <Plug>Kwbd
