@@ -429,3 +429,11 @@ nmap gd <Plug>Kwbd
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" make j/k jump to next row in editor
+" this is helpful when dealing with long lines (more natural)
+nnoremap j gj
+nnoremap k gk
+
+" clear search buffer (so highlight goes away)
+nmap <silent> ,/ :let @/=""<CR>
