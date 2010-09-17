@@ -443,3 +443,7 @@ nnoremap ; :
 
 " add left hand alias for leader
 nmap , <leader>
+
+" NERDCommenter configuration
+let NERDSpaceDelims = 1
+
