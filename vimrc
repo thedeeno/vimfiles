@@ -436,4 +436,4 @@ nnoremap j gj
 nnoremap k gk
 
 " clear search buffer (so highlight goes away)
-nmap <silent> ,/ :let @/=""<CR>
+nmap <silent> <leader>e :let @/=""<CR>
