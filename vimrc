@@ -377,9 +377,6 @@ vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
 vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
 vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 
-"misc remapping
-"nnoremap S :
-
 
 "mru mappings
 nnoremap <C-r> :MRU<CR>
