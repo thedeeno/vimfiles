@@ -378,9 +378,6 @@ vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
 vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 
 
-"mru mappings
-nnoremap <C-r> :MRU<CR>
-
 "smart indent when entering insert mode with i on empty lines
 function! IndentWithI()
     if len(getline('.')) == 0
