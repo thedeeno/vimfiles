@@ -437,3 +437,6 @@ nnoremap k gk
 
 " clear search buffer (so highlight goes away)
 nmap <silent> <leader>e :let @/=""<CR>
+
+" remap ; to : for faster command entry
+nnoremap ; :
