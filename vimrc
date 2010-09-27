@@ -444,3 +444,5 @@ nmap , <leader>
 " NERDCommenter configuration
 let NERDSpaceDelims = 1
 
+" store swap files in one location
+set directory=~/.vim/swap,.
