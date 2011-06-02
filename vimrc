@@ -1,8 +1,85 @@
-"Fabio Kung <fabio.kung@gmail.com>
 "
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
 set nocompatible
+
+" store swap files in one location
+" set directory=~/.vim/swap,.
+set noswapfile
+
+" ----------------------------------------------------------------------------
+"  Text Formatting
+" ----------------------------------------------------------------------------
+
+set autoindent             " automatic indent new lines
+set smartindent            " be smart about it
+inoremap # X<BS>#
+set nowrap                 " do not wrap lines
+set formatoptions+=n       " support for numbered/bullet lists
+"set textwidth=80           " wrap at 80 chars by default
+set virtualedit=block      " allow virtual edit in visual block ..
+
+" ----------------------------------------------------------------------------
+"  Remapping
+" ----------------------------------------------------------------------------
+
+" lead with ,
+" let mapleader = ","
+
+" exit to normal mode with 'hh'
+inoremap hh <ESC>
+
+" reflow paragraph with Q in normal and visual mode
+nnoremap Q gqap
+vnoremap Q gq
+
+" sane movement with wrap turned on
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+"try to make possible to navigate within lines of wrapped lines
+nmap <Down> gj
+nmap <Up> gk
+set fo=l
+
+" ----------------------------------------------------------------------------
+"  UI
+" ----------------------------------------------------------------------------
+
+set ruler                  " show the cursor position all the time
+set nolazyredraw           " turn off lazy redraw
+set number                 " line numbers
+set wildmenu               " turn on wild menu
+set wildmode=list:longest,full
+set ch=2                   " command line height
+set backspace=2            " allow backspacing over everything in insert mode
+set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
+set shortmess=filtIoOA     " shorten messages
+set report=0               " tell us about changes
+set showcmd                " show incomplete cmds down the bottom
+set showmode               " show current mode down the bottom
+set linespace=4            " add some line space for easy reading
+set guioptions-=T          " turn off needless toolbar on gvim/mvim
+let g:syntastic_enable_signs=1 "mark syntax errors with :signs
+
+" ----------------------------------------------------------------------------
+" Visual Cues
+" ----------------------------------------------------------------------------
+
+set showmatch              " brackets/braces that is
+set mat=5                  " duration to show matching brace (1/10 sec)
+set laststatus=2           " always show the status line
+set ignorecase             " ignore case when searching
+set nohlsearch             " don't highlight searches
+set visualbell t_vb=       " disable visual bell
 
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -10,88 +87,28 @@ set backspace=indent,eol,start
 "store lots of :cmdline history
 set history=1000
 
-set showcmd     "show incomplete cmds down the bottom
-set showmode    "show current mode down the bottom
 
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
 set number      "add line numbers
-set showbreak=...
-set wrap linebreak nolist
 
-"set a custom leader
-"let mapleader=";" // was a poor choice is it's used to repeat motions
+" ---------------------------------------------------------------------------
+" White space management
+" ---------------------------------------------------------------------------
 
-"mapping for command key to map navigation thru display lines instead
-"of just numbered lines
-vmap <D-j> gj
-vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
+"indent settings
+set softtabstop=2          " yep, two
+set shiftwidth=2           " ..
+set tabstop=2
+set expandtab              " expand tabs to spaces
+set autoindent
+set nosmarttab             " fuck tabs
 
-"add some line space for easy reading
-set linespace=4
-
-"disable visual bell
-set visualbell t_vb=
-
-"try to make possible to navigate within lines of wrapped lines
-nmap <Down> gj
-nmap <Up> gk
-set fo=l
-
-"statusline setup
-set statusline=%f       "tail of the filename
-
-"display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
-
-"display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
-
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
-
-"display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
-
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-
-set statusline+=%{StatuslineLongLineWarning()}
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-set statusline+=%=      "left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-set laststatus=2
-
-"turn off needless toolbar on gvim/mvim
-set guioptions-=T
+function! StripWhitespace ()
+    exec ':%s/ \+$//gc'
+endfunction
+map ,s :call StripWhitespace ()<CR>
 
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -108,7 +125,6 @@ function! StatuslineTrailingSpaceWarning()
     endif
     return b:statusline_trailing_space_warning
 endfunction
-
 
 "return the syntax highlight group under the cursor ''
 function! StatuslineCurrentHighlight()
@@ -186,6 +202,97 @@ function! s:LongLines()
     return long_line_lens
 endfunction
 
+" ---------------------------------------------------------------------------
+"  Setup Status Line
+" ---------------------------------------------------------------------------
+
+set statusline=%f       "tail of the filename
+
+"display a warning if fileformat isnt unix
+set statusline+=%#warningmsg#
+set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+set statusline+=%*
+
+"display a warning if file encoding isnt utf-8
+set statusline+=%#warningmsg#
+set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
+set statusline+=%*
+
+set statusline+=%h      "help file flag
+set statusline+=%y      "filetype
+set statusline+=%r      "read only flag
+set statusline+=%m      "modified flag
+
+"display a warning if &et is wrong, or we have mixed-indenting
+set statusline+=%#error#
+set statusline+=%{StatuslineTabWarning()}
+set statusline+=%*
+
+set statusline+=%{StatuslineTrailingSpaceWarning()}
+
+set statusline+=%{StatuslineLongLineWarning()}
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+"display a warning if &paste is set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+
+set statusline+=%=      "left/right separator
+set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
+set statusline+=%c,     "cursor column
+set statusline+=%l/%L   "cursor line/total lines
+set statusline+=\ %P    "percent through file
+set laststatus=2
+
+" ---------------------------------------------------------------------------
+" Command-T
+" ---------------------------------------------------------------------------
+
+let g:CommandTMaxHeight=10
+let g:CommandTMatchWindowAtTop=1
+
+if has("gui_running")
+    "tell the term has 256 colors
+    set t_Co=256
+
+    colorscheme railscasts
+
+    if has("gui_gnome")
+        set term=gnome-256color
+        colorscheme ir_dark
+        set guifont=Droid\ Sans\ Mono\ 12
+    else
+        colorscheme railscasts
+        set guitablabel=%M%t
+        set lines=40
+        set columns=115
+    endif
+    if has("gui_mac") || has("gui_macvim")
+        set guifont=Menlo:h14
+        " key binding for Command-T to behave properly
+        " uncomment to replace the Mac Command-T key to Command-T plugin
+        "macmenu &File.New\ Tab key=<nop>
+        "map <D-t> :CommandT<CR>
+        " make Mac's Option key behave as the Meta key
+        set invmmta
+    endif
+    if has("gui_win32") || has("gui_win32s")
+        set guifont=Consolas:h12
+        set enc=utf-8
+    endif
+else
+    "dont load csapprox if there is no gui support - silences an annoying warning
+    let g:CSApprox_loaded = 1
+endif
+
+" ---------------------------------------------------------------------------
+" Functions
+" ---------------------------------------------------------------------------
+
 "find the median of the given array of numbers
 function! s:Median(nums)
     let nums = sort(a:nums)
@@ -199,11 +306,6 @@ function! s:Median(nums)
     endif
 endfunction
 
-"indent settings
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set autoindent
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -250,43 +352,6 @@ set ttymouse=xterm2
 "hide buffers when not displayed
 set hidden
 
-"Command-T configuration
-noremap <leader>u :CommandTFlush<CR>
-let g:CommandTMaxHeight=10
-let g:CommandTMatchWindowAtTop=1
-
-if has("gui_running")
-    "tell the term has 256 colors
-    set t_Co=256
-
-    if has("gui_gnome")
-        set term=gnome-256color
-        colorscheme ir_dark
-        set guifont=Droid\ Sans\ Mono\ 12
-    else
-        colorscheme railscasts
-        set guitablabel=%M%t
-        set lines=40
-        set columns=115
-    endif
-    if has("gui_mac") || has("gui_macvim")
-        set guifont=Menlo:h14
-        " key binding for Command-T to behave properly
-        " uncomment to replace the Mac Command-T key to Command-T plugin
-        "macmenu &File.New\ Tab key=<nop>
-        "map <D-t> :CommandT<CR>
-        " make Mac's Option key behave as the Meta key
-        set invmmta
-    endif
-    if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
-        set enc=utf-8
-    endif
-else
-    "dont load csapprox if there is no gui support - silences an annoying warning
-    let g:CSApprox_loaded = 1
-endif
-
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 "make <leader>l clear the highlight as well as redraw
@@ -307,8 +372,6 @@ inoremap <M-o>       <Esc>o
 inoremap <C-j>       <Down>
 let g:ragtag_global_maps = 1
 
-"mark syntax errors with :signs
-let g:syntastic_enable_signs=1
 
 "key mapping for vimgrep result navigation
 map <A-o> :copen<CR>
@@ -388,8 +451,6 @@ function! IndentWithI()
 endfunction
 nnoremap <expr> i IndentWithI()
 
-colorscheme railscasts2
-
 " remap ga to vim-rails alternate file command
 nmap ga :a<CR>
 
@@ -444,5 +505,3 @@ nmap , <leader>
 " NERDCommenter configuration
 let NERDSpaceDelims = 1
 
-" store swap files in one location
-set directory=~/.vim/swap,.
