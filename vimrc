@@ -50,6 +50,75 @@ nmap <Down> gj
 nmap <Up> gk
 set fo=l
 
+" add a minibuffer shortcut which is similar to vimperator
+nmap gt :MBEbn<CR>
+nmap gT :MBEbp<CR>
+
+" remap window navigation
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>n
+
+" create shortcut for deleting a window
+nmap gd <Plug>Kwbd
+
+" create shortcut for going to vim-rails alt file
+nmap ga :A<CR>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" make j/k jump to next row in editor
+" this is helpful when dealing with long lines (more natural)
+nnoremap j gj
+nnoremap k gk
+
+" clear search buffer (so highlight goes away)
+nmap <silent> <leader>e :let @/=""<CR>
+
+" remap ; to : for faster command entry
+nnoremap ; :
+
+" add left hand alias for leader
+nmap , <leader>
+
+"align plugin mappings
+vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
+vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
+vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
+vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
+
+nmap <silent> <Leader>p :NERDTreeToggle<CR>
+
+"make <leader>l clear the highlight as well as redraw
+noremap <leader>l :set hlsearch! hlsearch?<CR>
+inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
+
+"map to CommandT TextMate style finder
+nnoremap go :CommandT<CR>
+
+"map Q to something useful
+noremap Q gq
+
+"make Y consistent with C and D
+nnoremap Y y$
+
+"bindings for ragtag
+inoremap <M-o>       <Esc>o
+inoremap <C-j>       <Down>
+let g:ragtag_global_maps = 1
+
+
+"key mapping for vimgrep result navigation
+map <A-o> :copen<CR>
+map <A-q> :cclose<CR>
+map <A-j> :cnext<CR>
+map <A-k> :cprevious<CR>
+
+" remap ga to vim-rails alternate file command
+nmap ga :A<CR>
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -328,6 +397,11 @@ set scrolloff=3
 set sidescrolloff=7
 set sidescroll=1
 
+
+" ---------------------------------------------------------------------------
+" Pathogen
+" ---------------------------------------------------------------------------
+
 "necessary on some Linux distros for pathogen to properly load bundles
 filetype off
 
@@ -342,42 +416,8 @@ filetype plugin off
 filetype plugin on
 filetype indent on
 
-"turn on syntax highlighting
-syntax on
-
-"some stuff to get the mouse going in term
-set mouse=a
-set ttymouse=xterm2
-
-"hide buffers when not displayed
-set hidden
-
-nmap <silent> <Leader>p :NERDTreeToggle<CR>
-
-"make <leader>l clear the highlight as well as redraw
-noremap <leader>l :set hlsearch! hlsearch?<CR>
-inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
-
-"map to CommandT TextMate style finder
-nnoremap go :CommandT<CR>
-
-"map Q to something useful
-noremap Q gq
-
-"make Y consistent with C and D
-nnoremap Y y$
-
-"bindings for ragtag
-inoremap <M-o>       <Esc>o
-inoremap <C-j>       <Down>
-let g:ragtag_global_maps = 1
 
 
-"key mapping for vimgrep result navigation
-map <A-o> :copen<CR>
-map <A-q> :cclose<CR>
-map <A-j> :cnext<CR>
-map <A-k> :cprevious<CR>
 
 "snipmate setup
 try
@@ -434,13 +474,6 @@ function! s:HighlightLongLines(width)
     endif
 endfunction
 
-"align plugin mappings
-vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
-vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
-vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
-vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
-
-
 "smart indent when entering insert mode with i on empty lines
 function! IndentWithI()
     if len(getline('.')) == 0
@@ -451,57 +484,17 @@ function! IndentWithI()
 endfunction
 nnoremap <expr> i IndentWithI()
 
-" remap ga to vim-rails alternate file command
-nmap ga :a<CR>
+" ---------------------------------------------------------------------------
+" MiniBuff Config
+" ---------------------------------------------------------------------------
 
-" add some minibuffer options
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"let g:miniBufExplModSelTarget = 1 
-
-" add a minibuffer shortcut which is similar to vimperator
-nmap gt :MiniBufExplorer<CR>l<CR>
-nmap gT :MiniBufExplorer<CR>h<CR>
-
-" remap fuzzy finder buffer to something similar to the tab navigation
-nnoremap gu :FufBuffer<CR>
-
-" remap window navigation
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-H> <C-W>h
-noremap <C-L> <C-W>n
-
-" create shortcut for cycling buffers with minibuf explorer
-nmap gt :MBEbn<CR>
-nmap gT :MBEbp<CR>
 let g:miniBufExplorerMoreThanOne = 1
 
-" create shortcut for deleting a window
-nmap gd <Plug>Kwbd
+" ---------------------------------------------------------------------------
+" NerdCommenter
+" ---------------------------------------------------------------------------
 
-" create shortcut for going to vim-rails alt file
-nmap ga :A<CR>
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" make j/k jump to next row in editor
-" this is helpful when dealing with long lines (more natural)
-nnoremap j gj
-nnoremap k gk
-
-" clear search buffer (so highlight goes away)
-nmap <silent> <leader>e :let @/=""<CR>
-
-" remap ; to : for faster command entry
-nnoremap ; :
-
-" add left hand alias for leader
-nmap , <leader>
-
-" NERDCommenter configuration
 let NERDSpaceDelims = 1
 
