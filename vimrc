@@ -90,6 +90,10 @@ vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
 vmap <silent> <Leader>i, <ESC>:'<,'>Align ,<CR>
 vmap <silent> <Leader>i( <ESC>:'<,'>Align (<CR>
 
+" swap ' and "
+inoremap ' "
+inoremap " '
+
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 "make <leader>l clear the highlight as well as redraw
