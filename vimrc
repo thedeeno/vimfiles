@@ -143,6 +143,7 @@ set showmode               " show current mode down the bottom
 set linespace=4            " add some line space for easy reading
 set guioptions-=T          " turn off needless toolbar on gvim/mvim
 let g:syntastic_enable_signs=1 "mark syntax errors with :signs
+set showtabline=0          " never show the tab bar, using minibuff
 
 " ----------------------------------------------------------------------------
 " Visual Cues
