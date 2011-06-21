@@ -92,8 +92,10 @@ nmap <silent> <Leader>p :NERDTreeToggle<CR>
 noremap <leader>l :set hlsearch! hlsearch?<CR>
 inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
 
-"map to CommandT TextMate style finder
+"map to CommandT 
 nnoremap go :CommandT<CR>
+nnoremap gu :CommandTBuffer<CR>
+nnoremap gl :CommandTFlush<CR>
 
 "map Q to something useful
 noremap Q gq
