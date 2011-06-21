@@ -60,8 +60,6 @@ noremap <C-L> <C-W>n
 " create shortcut for deleting a window
 nmap gd <Plug>Kwbd
 
-" create shortcut for going to vim-rails alt file
-nmap ga :A<CR>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
