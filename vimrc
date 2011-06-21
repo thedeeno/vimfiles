@@ -484,11 +484,15 @@ function! IndentWithI()
 endfunction
 nnoremap <expr> i IndentWithI()
 
+" ----------------------------------------------------------------------------
+" NERDTree
+" ----------------------------------------------------------------------------
 " ---------------------------------------------------------------------------
 " MiniBuff Config
 " ---------------------------------------------------------------------------
 
 let g:miniBufExplMapWindowNavVim = 1
+let NERDTreeQuitOnOpen = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplorerMoreThanOne = 1
 
