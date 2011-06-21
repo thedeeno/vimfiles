@@ -26,9 +26,6 @@ set virtualedit=block      " allow virtual edit in visual block ..
 " lead with ,
 " let mapleader = ","
 
-" exit to normal mode with 'hh'
-inoremap hh <ESC>
-
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
 vnoremap Q gq
