@@ -76,9 +76,6 @@ nmap <silent> <leader>e :let @/=""<CR>
 " remap ; to : for faster command entry
 nnoremap ; :
 
-" add left hand alias for leader
-nmap , <leader>
-
 "align plugin mappings
 vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
 vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
