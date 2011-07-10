@@ -58,7 +58,7 @@ noremap <C-H> <C-W>h
 noremap <C-L> <C-W>n
 
 " create shortcut for deleting a window
-nmap gd <Plug>Kwbd
+nmap gc :bd<CR>
 
 
 " Quickly edit/reload the vimrc file
@@ -338,7 +338,6 @@ if has("gui_running")
         colorscheme railscasts
         set guitablabel=%M%t
         set lines=40
-        set columns=115
     endif
     if has("gui_mac") || has("gui_macvim")
         set guifont=Menlo:h14
