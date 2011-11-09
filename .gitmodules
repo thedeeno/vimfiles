@@ -78,3 +78,6 @@
 	path = bundle/command-t
 	url = git://git.wincent.com/command-t.git
   ignore = dirty
+[submodule "bundle/handlebars"]
+	path = bundle/handlebars
+	url = git://github.com/nono/vim-handlebars.git
