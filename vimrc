@@ -13,7 +13,6 @@ set noswapfile
 
 set autoindent             " automatic indent new lines
 set smartindent            " be smart about it
-inoremap # X<BS>#
 set nowrap                 " do not wrap lines
 set formatoptions+=n       " support for numbered/bullet lists
 "set textwidth=80           " wrap at 80 chars by default
@@ -24,7 +23,10 @@ set virtualedit=block      " allow virtual edit in visual block ..
 " ----------------------------------------------------------------------------
 
 " lead with ,
-" let mapleader = ","
+let mapleader = "6"
+inoremap <leader>6 6
+inoremap 5 =
+inoremap = 5
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -73,9 +75,6 @@ nnoremap k gk
 " clear search buffer (so highlight goes away)
 nmap <silent> <leader>e :let @/=""<CR>
 
-" remap ; to : for faster command entry
-nnoremap ; :
-
 "align plugin mappings
 vmap <silent> <Leader>i= <ESC>:'<,'>Align =<CR>
 vmap <silent> <Leader>i\| <ESC>:'<,'>Align \|<CR>
@@ -108,7 +107,6 @@ inoremap <M-o>       <Esc>o
 inoremap <C-j>       <Down>
 let g:ragtag_global_maps = 1
 
-
 "key mapping for vimgrep result navigation
 map <A-o> :copen<CR>
 map <A-q> :cclose<CR>
@@ -118,6 +116,7 @@ map <A-k> :cprevious<CR>
 " remap ga to vim-rails alternate file command
 nmap ga :A<CR>
 nmap gr :R<CR>
+
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -177,7 +176,7 @@ set nosmarttab             " fuck tabs
 function! StripWhitespace ()
     exec ':%s/ \+$//gc'
 endfunction
-map ,s :call StripWhitespace ()<CR>
+map <leader>s :call StripWhitespace ()<CR>
 
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
@@ -417,7 +416,6 @@ filetype indent on
 
 
 
-
 "snipmate setup
 try
   source ~/.vim/snippets/support_functions.vim
@@ -503,3 +501,7 @@ let g:miniBufExplorerMoreThanOne = 1
 
 let NERDSpaceDelims = 1
 
+" ---------------------------------------------------------------------------
+" Coffee Script
+" ---------------------------------------------------------------------------
+" autocmd BufWritePost *.coffee silent CoffeMake! -b | cwindow
