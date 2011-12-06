@@ -22,9 +22,6 @@ set virtualedit=block      " allow virtual edit in visual block ..
 "  Remapping
 " ----------------------------------------------------------------------------
 
-" lead with ,
-let mapleader = "6"
-inoremap <leader>6 6
 inoremap 5 =
 inoremap = 5
 
