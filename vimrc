@@ -22,8 +22,11 @@ set virtualedit=block      " allow virtual edit in visual block ..
 "  Remapping
 " ----------------------------------------------------------------------------
 
-inoremap 5 =
-inoremap = 5
+" inoremap 5 =
+" inoremap = 5
+
+" alias leader in normal mode
+" nmap , \
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -59,7 +62,6 @@ noremap <C-L> <C-W>n
 " create shortcut for deleting a window
 nmap gc :bd<CR>
 
-
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -85,8 +87,8 @@ inoremap " '
 nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 "make <leader>l clear the highlight as well as redraw
-noremap <leader>l :set hlsearch! hlsearch?<CR>
-inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
+" noremap <leader>l :set hlsearch! hlsearch?<CR>
+" inoremap <leader>l <C-O>:set hlsearch! hlsearch?<CR>
 
 "map to CommandT 
 nnoremap go :CommandT<CR>
@@ -112,7 +114,13 @@ map <A-k> :cprevious<CR>
 
 " remap ga to vim-rails alternate file command
 nmap ga :A<CR>
-nmap gr :R<CR>
+" nmap gr :R<CR>
+
+" For local replace
+nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>}
 
 " ----------------------------------------------------------------------------
 "  UI
