@@ -502,3 +502,12 @@ let NERDSpaceDelims = 1
 " Coffee Script
 " ---------------------------------------------------------------------------
 " autocmd BufWritePost *.coffee silent CoffeMake! -b | cwindow
+" ---------------------------------------------------------------------------
+" Turn off active error checking for slow-to-compile languages
+"
+" there may be a way to speed up the checking but this fix works and I care 
+" more about fast buffer switching than syntax checking. 
+" ---------------------------------------------------------------------------
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': ['haml', 'scss', 'sass'] }
